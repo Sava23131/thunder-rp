@@ -3,638 +3,690 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thunder Roleplay - Comunitate FiveM Premium</title>
+    <title>Thunder Roleplay | Premium FiveM Community</title>
     <style>
-        /* FONTS & ROOT VARIABLES */
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&display=swap');
 
         :root {
-            --bg-main: #030708;
-            --bg-card: rgba(11, 20, 22, 0.6);
-            --cyan-neon: #00ffd5;
-            --cyan-glow: rgba(0, 255, 213, 0.3);
-            --fondator-color: #ff4757;
-            --cofondator-color: #ff9f43;
-            --dev-color: #00ffd5;
-            --text-gray: #a3c2c9;
+            --bg-deep: #020506;
+            --bg-surface: rgba(9, 18, 20, 0.7);
+            --bg-surface-elevated: rgba(16, 29, 31, 0.85);
+            --neon-cyan: #00ffd5;
+            --neon-blue: #0088ff;
+            --fondator: #ff4757;
+            --cofondator: #ff9f43;
+            --developer: #00ffd5;
+            --text-primary: #ffffff;
+            --text-secondary: #90afb7;
+            --cyber-gradient: linear-gradient(135deg, #00ffd5 0%, #0088ff 100%);
         }
 
-        /* RESET & GENERAL STYLES */
+        /* HARDWARE ACCELERATED RESET */
         * {
             box-sizing: border-box;
-            scroll-behavior: smooth;
             margin: 0;
             padding: 0;
-        }
-        body {
-            font-family: 'Rajdhani', sans-serif;
-            background-color: var(--bg-main);
-            color: #ffffff;
-            text-align: center;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 255, 213, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(255, 71, 87, 0.03) 0%, transparent 40%);
-            background-attachment: fixed;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* HEADER & NAVIGATION */
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(2, 5, 6, 0.95), rgba(2, 5, 6, 0.95)),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 213, 0.01) 2px, rgba(0, 255, 213, 0.01) 4px);
+        }
+
+        /* NOTIFICATION TOAST */
+        #toast {
+            position: fixed;
+            bottom: -100px;
+            right: 30px;
+            background: var(--cyber-gradient);
+            color: #020506;
+            padding: 15px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 255, 213, 0.4);
+            z-index: 9999;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        #toast.show { bottom: 30px; }
+
+        /* ADVANCED NAVIGATION */
         .navbar {
-            background-color: rgba(3, 7, 8, 0.85);
-            border-bottom: 1px solid rgba(0, 255, 213, 0.15);
+            background: linear-gradient(to bottom, rgba(2,5,6,0.95), rgba(2,5,6,0.8));
+            border-bottom: 1px solid rgba(0, 255, 213, 0.1);
             padding: 20px 8%;
             position: sticky;
             top: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            transition: all 0.4s ease;
+            backdrop-filter: blur(15px);
+            z-index: 5000;
         }
         .navbar .logo {
             font-family: 'Orbitron', sans-serif;
-            color: var(--cyan-neon);
+            color: #fff;
             font-weight: 900;
-            font-size: 1.8rem;
-            text-shadow: 0 0 15px var(--cyan-glow);
+            font-size: 2rem;
             text-decoration: none;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+        }
+        .navbar .logo span {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 15px rgba(0, 255, 213, 0.6);
         }
         .navbar .links a {
-            color: var(--text-gray);
+            color: var(--text-secondary);
             text-decoration: none;
-            margin-left: 30px;
-            font-weight: 600;
+            margin-left: 35px;
+            font-weight: 700;
             font-size: 1.1rem;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            position: relative;
+            padding-bottom: 5px;
         }
-        .navbar .links a:hover {
-            color: var(--cyan-neon);
-            text-shadow: 0 0 10px var(--cyan-neon);
+        .navbar .links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 2px;
+            background: var(--neon-cyan);
+            transition: width 0.3s ease;
         }
+        .navbar .links a:hover { color: #fff; }
+        .navbar .links a:hover::after { width: 100%; }
 
-        /* HERO SECTION */
+        /* HERO MATRIX */
         .hero {
-            padding: 160px 20px 120px 20px;
+            padding: 180px 20px 140px 20px;
+            background: radial-gradient(circle at center, rgba(0, 255, 213, 0.07) 0%, transparent 65%);
             position: relative;
         }
         .hero h1 {
             font-family: 'Orbitron', sans-serif;
-            color: #ffffff; 
-            font-size: 6rem;
+            font-size: 6.5rem;
             text-transform: uppercase;
-            letter-spacing: 12px;
-            margin-bottom: 20px;
+            letter-spacing: 16px;
             font-weight: 900;
-            position: relative;
-            display: inline-block;
+            line-height: 1.1;
+            margin-bottom: 25px;
         }
         .hero h1 span {
-            color: var(--cyan-neon);
-            text-shadow: 0 0 20px var(--cyan-neon), 0 0 40px rgba(0, 255, 213, 0.6);
+            background: var(--cyber-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px rgba(0, 255, 213, 0.3));
         }
         .subtitlu {
-            color: var(--text-gray);
-            font-size: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto 50px auto;
-            line-height: 1.6;
-            letter-spacing: 0.5px;
-        }
-        
-        /* MODERN INTERACTIVE BUTTONS */
-        .btn-premium {
-            display: inline-block;
-            background: linear-gradient(90deg, #00ffd5, #00b3ff);
-            color: #030708;
-            padding: 16px 45px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 25px rgba(0, 255, 213, 0.4);
-            border: none;
-            cursor: pointer;
-        }
-        .btn-premium:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 40px var(--cyan-neon);
-            color: #fff;
+            color: var(--text-secondary);
+            font-size: 1.6rem;
+            max-width: 850px;
+            margin: 0 auto 60px auto;
+            line-height: 1.7;
         }
 
-        /* SERVER STATUS PANEL */
-        .status-panel {
-            max-width: 900px;
-            margin: -40px auto 60px auto;
-            background: rgba(11, 20, 22, 0.8);
-            border: 1px solid rgba(0, 255, 213, 0.2);
-            border-radius: 8px;
-            padding: 25px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-        }
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .pulse-dot {
-            width: 12px;
-            height: 12px;
-            background-color: var(--cyan-neon);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--cyan-neon);
-            animation: pulse 1.5s infinite;
-        }
-        .status-text h4 {
-            font-size: 1.4rem;
+        /* CYBER BUTTONS */
+        .btn-cyber {
+            font-family: 'Orbitron', sans-serif;
+            display: inline-block;
+            background: transparent;
+            color: var(--neon-cyan);
+            border: 2px solid var(--neon-cyan);
+            padding: 18px 50px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 3px;
+            position: relative;
+            transition: all 0.3s ease;
+            clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px);
+        }
+        .btn-cyber:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-deep);
+            box-shadow: 0 0 35px rgba(0, 255, 213, 0.5);
+            transform: scale(1.03);
+        }
+
+        /* SECTOR CONTROLLER (STATUS) */
+        .status-hub {
+            max-width: 1100px;
+            margin: -50px auto 80px auto;
+            background: var(--bg-surface);
+            border: 1px solid rgba(0, 255, 213, 0.15);
+            border-radius: 4px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+        .hub-node {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 10px 20px;
+        }
+        .hub-node:not(:last-child) {
+            border-right: 1px solid rgba(144, 175, 183, 0.1);
+        }
+        .live-indicator {
+            width: 14px;
+            height: 14px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            position: relative;
+        }
+        .live-indicator::after {
+            content: ''; position: absolute; width: 100%; height: 100%; top:0; left:0;
+            background: var(--neon-cyan); border-radius: 50%;
+            animation: radar 2s infinite;
+        }
+        .hub-meta h5 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
             text-align: left;
         }
-        .status-text p {
-            color: var(--text-gray);
+        .hub-meta p {
+            color: var(--text-secondary);
             font-size: 1rem;
             text-align: left;
         }
+        .ip-clicker {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .ip-clicker:hover {
+            background: rgba(0, 255, 213, 0.05);
+        }
 
-        /* SECTIONS GENERAL */
-        .sectiune {
+        /* GENERAL SECTION FORMATTING */
+        .section-block {
             max-width: 1300px;
             margin: 0 auto;
-            padding: 100px 20px;
+            padding: 120px 20px;
         }
-        .sectiune h2 {
+        .section-block h2 {
             font-family: 'Orbitron', sans-serif;
-            color: #ffffff;
-            font-size: 3rem;
+            font-size: 3.5rem;
             text-transform: uppercase;
+            letter-spacing: 4px;
             margin-bottom: 15px;
-            letter-spacing: 3px;
         }
-        .sectiune h2 span {
-            color: var(--cyan-neon);
+        .section-block h2 span {
+            color: var(--neon-cyan);
         }
-        .sectiune-sub {
-            color: var(--text-gray);
-            margin-bottom: 60px;
-            font-size: 1.2rem;
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 1.3rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            margin-bottom: 70px;
         }
 
-        /* GRID SYSTEM */
-        .grid-container {
+        /* INTERACTIVE INTERFACE (TABS FOR RULES) */
+        .tabs-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .tab-trigger {
+            font-family: 'Orbitron', sans-serif;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text-secondary);
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+        .tab-trigger.active, .tab-trigger:hover {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+            background: rgba(0, 255, 213, 0.03);
+        }
+        .tab-content { display: none; }
+        .tab-content.active {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        /* INTERFACE CARDS */
+        .glass-card {
+            background: var(--bg-surface);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 4px;
+            padding: 45px 35px;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 213, 0.25);
+            background: var(--bg-surface-elevated);
+        }
+        .glass-card h4 {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .glass-card p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .tag-punishment {
+            margin-top: 25px;
+            display: inline-block;
+            background: rgba(255, 71, 87, 0.08);
+            color: #ff4757;
+            padding: 6px 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 71, 87, 0.15);
+        }
+
+        /* GRID DEFINITIONS */
+        .base-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 35px;
         }
 
-        /* CARDS WITH GLASSMORPHISM */
-        .card {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px 30px;
-            border-radius: 8px;
-            text-align: left;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: transparent;
-            transition: all 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: rgba(0, 255, 213, 0.3);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-        }
-        .card:hover::before {
-            background: var(--cyan-neon);
-        }
-        .card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #fff;
-        }
-        .card p {
-            color: var(--text-gray);
-            font-size: 1.05rem;
-            line-height: 1.6;
-        }
-        .sanctiune {
-            margin-top: 25px;
-            display: inline-block;
-            background: rgba(255, 71, 87, 0.1);
-            color: #ff4757;
-            padding: 6px 15px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 4px;
-            border: 1px solid rgba(255, 71, 87, 0.2);
-        }
-
-        /* FACTIONS SECTION */
-        .faction-card {
-            background: linear-gradient(135deg, rgba(11,20,22,0.9) 0%, rgba(5,10,12,0.9) 100%);
+        /* ADVANCED HIERARCHICAL STAFF GRID */
+        .staff-node {
+            background: rgba(5, 11, 13, 0.5);
             border: 1px solid rgba(255,255,255,0.03);
-            padding: 35px;
+            padding: 50px 20px;
             border-radius: 8px;
-            transition: all 0.3s;
-        }
-        .faction-card:hover {
-            border-color: var(--cyan-neon);
-            box-shadow: 0 0 20px rgba(0, 255, 213, 0.1);
-        }
-        .faction-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        /* STAFF CARDS (ADVANCED NEON SETUP) */
-        .staff-card {
-            background: rgba(11, 20, 22, 0.4);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 12px;
-            padding: 40px 30px;
+            transition: all 0.4s ease;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(5px);
         }
-        .staff-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        .staff-node:hover {
+            transform: translateY(-8px);
+            background: rgba(9, 19, 22, 0.9);
         }
-        
-        /* Card specifics for hierarchy */
-        .staff-card.v-fondator:hover { border-color: var(--fondator-color); box-shadow: 0 0 30px rgba(255, 71, 87, 0.25); }
-        .staff-card.v-cofondator:hover { border-color: var(--cofondator-color); box-shadow: 0 0 30px rgba(255, 159, 67, 0.25); }
-        .staff-card.v-dev:hover { border-color: var(--dev-color); box-shadow: 0 0 30px rgba(0, 255, 213, 0.25); }
+        .staff-node.fnd:hover { border-color: var(--fondator); box-shadow: 0 15px 40px rgba(255, 71, 87, 0.15); }
+        .staff-node.cofnd:hover { border-color: var(--cofondator); box-shadow: 0 15px 40px rgba(255, 159, 67, 0.15); }
+        .staff-node.dev:hover { border-color: var(--developer); box-shadow: 0 15px 40px rgba(0, 255, 213, 0.15); }
 
-        .avatar-frame {
+        .hex-avatar {
             width: 110px;
             height: 110px;
-            border-radius: 50%;
-            margin: 0 auto 25px auto;
+            margin: 0 auto 30px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
             font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
             font-weight: 900;
-            color: #ffffff;
-            position: relative;
+            border-radius: 50%;
         }
-        
-        .v-fondator .avatar-frame {
-            background: radial-gradient(circle, rgba(255, 71, 87, 0.2) 0%, #060b0c 100%);
-            border: 3px solid var(--fondator-color);
-            box-shadow: 0 0 20px rgba(255, 71, 87, 0.4);
-        }
-        .v-cofondator .avatar-frame {
-            background: radial-gradient(circle, rgba(255, 159, 67, 0.2) 0%, #060b0c 100%);
-            border: 3px solid var(--cofondator-color);
-            box-shadow: 0 0 20px rgba(255, 159, 67, 0.4);
-        }
-        .v-dev .avatar-frame {
-            background: radial-gradient(circle, rgba(0, 255, 213, 0.2) 0%, #060b0c 100%);
-            border: 3px solid var(--dev-color);
-            box-shadow: 0 0 20px rgba(0, 255, 213, 0.4);
-        }
+        .fnd .hex-avatar { border: 3px solid var(--fondator); color: var(--fondator); text-shadow: 0 0 10px var(--fondator); background: rgba(255, 71, 87, 0.05); }
+        .cofnd .hex-avatar { border: 3px solid var(--cofondator); color: var(--cofondator); text-shadow: 0 0 10px var(--cofondator); background: rgba(255, 159, 67, 0.05); }
+        .dev .hex-avatar { border: 3px solid var(--developer); color: var(--developer); text-shadow: 0 0 10px var(--developer); background: rgba(0, 255, 213, 0.05); }
 
-        .staff-card h3 {
+        .staff-node h3 {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
+            margin-bottom: 12px;
         }
-        .badge-grad {
+        .rank-badge {
             display: inline-block;
-            padding: 5px 20px;
-            border-radius: 20px;
+            padding: 6px 20px;
+            border-radius: 3px;
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.85rem;
             letter-spacing: 2px;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.5);
         }
 
-        /* PREMIUM STORE SECTION */
-        .shop-card {
-            background: linear-gradient(180deg, rgba(15, 28, 31, 0.7) 0%, rgba(7, 12, 14, 0.9) 100%);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 50px 30px 40px 30px;
-            border-radius: 12px;
-            transition: all 0.4s ease;
+        /* PREMIUM MATRIX STORE */
+        .package-node {
+            background: linear-gradient(180deg, rgba(10,21,24,0.8) 0%, rgba(3,7,8,0.95) 100%);
+            border: 1px solid rgba(255,255,255,0.04);
+            padding: 60px 35px 45px 35px;
+            border-radius: 4px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
+            transition: all 0.4s;
         }
-        .shop-card:hover {
+        .package-node:hover {
             transform: translateY(-10px);
-            border-color: rgba(255,255,255,0.15);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border-color: rgba(255,255,255,0.1);
         }
-        .shop-card.exclusive {
-            border: 2px solid var(--cyan-neon);
-            box-shadow: 0 0 30px rgba(0, 255, 213, 0.15);
+        .package-node.gold-tier {
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 20px 50px rgba(0, 255, 213, 0.15);
         }
-        .exclusive-tag {
+        .tier-tag {
             position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--cyan-neon);
-            color: #030708;
-            padding: 5px 25px;
-            font-size: 0.85rem;
-            font-weight: 900;
-            border-radius: 4px;
-            text-transform: uppercase;
+            top: -16px; left: 50%; transform: translateX(-50%);
+            background: var(--neon-cyan); color: #020506;
+            padding: 6px 30px; font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem; font-weight: 900; text-transform: uppercase;
             letter-spacing: 2px;
-            box-shadow: 0 0 15px var(--cyan-neon);
         }
-        .shop-card h3 {
+        .package-node h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-        }
-        .price-tag {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            color: #fff;
-            font-weight: 900;
-            margin: 25px 0;
-        }
-        .price-tag span {
-            color: var(--cyan-neon);
             font-size: 2rem;
-            vertical-align: super;
+            letter-spacing: 1px;
         }
-        .perks-list {
-            list-style: none;
-            text-align: left;
+        .node-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
             margin: 30px 0;
         }
-        .perks-list li {
-            color: var(--text-gray);
-            margin-bottom: 15px;
+        .node-price span { color: var(--neon-cyan); font-size: 2.2rem; vertical-align: super; }
+        
+        .perks-bucket {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+        .perks-bucket li {
+            color: var(--text-secondary);
+            margin-bottom: 18px;
             font-size: 1.1rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
-        .perks-list li::before {
-            content: "✓";
-            color: var(--cyan-neon);
-            font-weight: bold;
+        .perks-bucket li::before {
+            content: "⚡";
+            color: var(--neon-cyan);
         }
-        .btn-shop {
+        .btn-node-buy {
             display: block;
             background: transparent;
-            border: 2px solid var(--cyan-neon);
-            color: var(--cyan-neon);
-            padding: 15px;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            padding: 16px;
             text-decoration: none;
-            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
-        .btn-shop:hover {
-            background: var(--cyan-neon);
-            color: #030708;
-            box-shadow: 0 0 20px var(--cyan-neon);
+        .btn-node-buy:hover {
+            background: var(--neon-cyan);
+            color: #020506;
+            box-shadow: 0 0 25px var(--neon-cyan);
         }
 
-        /* FOOTER */
+        /* CLIENT TESTIMONIALS MODULE */
+        .review-box {
+            background: rgba(255,255,255,0.01);
+            border-left: 3px solid var(--neon-blue);
+            padding: 30px;
+            text-align: left;
+        }
+        .review-box p { font-style: italic; font-size: 1.2rem; color: var(--text-secondary); }
+        .review-box span { display: block; margin-top: 15px; font-weight: bold; color: #fff; font-family: 'Orbitron', sans-serif; }
+
+        /* FOOTER APEX */
         footer {
-            background-color: #010405;
-            padding: 50px 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #55727a;
+            background: #010304;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            color: #4a6268;
             font-size: 1rem;
         }
-        .footer-logo {
+        .footer-branding {
             font-family: 'Orbitron', sans-serif;
-            color: rgba(255,255,255,0.4);
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-        
-        .divider {
-            border: 0;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(0,255,213,0.15), transparent);
-            margin: 40px 0;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
         }
 
-        /* ANIMATIONS */
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 213, 0.5); }
-            70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(0, 255, 213, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 213, 0); }
+        /* RESPONSIVE ANCHORS */
+        @keyframes radar {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(2.5); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
+    <div id="toast">IP Copiat! Deschide FiveM &rarr; F8</div>
+
     <nav class="navbar">
         <a href="#" class="logo">THUNDER<span>RP</span></a>
         <div class="links">
             <a href="#">Acasă</a>
-            <a href="#regulament">Regulament</a>
-            <a href="#factions">Facțiuni</a>
-            <a href="#staff">Staff</a>
-            <a href="#shop">Magazin VIP</a>
+            <a href="#rules">Regulament</a>
+            <a href="#staff-sector">Echipa Admin</a>
+            <a href="#store">Magazin Premium</a>
         </div>
     </nav>
 
     <div class="hero">
         <h1>THUNDER <span>ROLEPLAY</span></h1>
-        <p class="subtitlu">Redefinim conceptul de Hard-Roleplay din România. Descoperă sisteme de scripturi revoluționare, o economie dinamică axată pe realism și o stabilitate de neegalat a serverului.</p>
-        <a href="https://discord.gg/pttd7sdZm" target="_blank" class="btn-premium">Alătură-te pe Discord</a>
+        <p class="subtitlu">Arhitectura supremă a simulării virtuale în FiveM. Platformă construită pentru performanță brută, roleplay de înaltă definiție și stabilitate structurală permanentă.</p>
+        <a href="https://discord.gg/pttd7sdZm" target="_blank" class="btn-cyber">Inițiază Conexiunea</a>
     </div>
 
-    <div class="status-panel">
-        <div class="status-item">
-            <div class="pulse-dot"></div>
-            <div class="status-text">
-                <h4>Server Online</h4>
-                <p>Pregătit pentru conexiune</p>
+    <div class="status-hub">
+        <div class="hub-node">
+            <div class="live-indicator"></div>
+            <div class="hub-meta">
+                <h5>Sistem Online</h5>
+                <p>Uptime Rețea 99.9%</p>
             </div>
         </div>
-        <div class="status-item">
-            <div class="status-text" style="text-align: center;">
-                <h4 style="color: var(--cyan-neon);">94 / 128</h4>
-                <p>Jucători Activi Acum</p>
+        <div class="hub-node">
+            <div class="hub-meta" style="margin: 0 auto; text-align: center;">
+                <h5 style="color: var(--neon-cyan); font-size: 1.6rem;">94 / 128</h5>
+                <p>Cores Conectate Acum</p>
             </div>
         </div>
-        <div class="status-item">
-            <div class="status-text">
-                <h4>cfx.re/join/thunder</h4>
-                <p>Adresă de conectare rapidă</p>
-            </div>
-        </div>
-    </div>
-
-    <hr class="divider">
-
-    <div class="sectiune" id="regulament">
-        <h2>Regulament <span>Server</span></h2>
-        <p class="sectiune-sub">Nerespectarea normelor de conduită duce la sancțiuni drastice</p>
-        <div class="grid-container">
-            <div class="card">
-                <h3>1. Fail Roleplay (FailRP)</h3>
-                <p>Acțiunile care contrazic logica realității sau lipsa totală de instinct de conservare (ex: urcatul cu mașini de oraș pe teren accidentat sau ignorarea armelor ațintite asupra ta).</p>
-                <span class="sanctiune">Sancțiune: Warn / Ban 1-3 Zile</span>
-            </div>
-            <div class="card">
-                <h3>2. Metagaming (Meta)</h3>
-                <p>Transferul și utilizarea informațiilor obținute în afara caracterului (OOC - Discord, Live-uri, Chat Global) direct în interiorul acțiunilor IC din joc.</p>
-                <span class="sanctiune">Sancțiune: Ban Temporar 7 Zile</span>
-            </div>
-            <div class="card">
-                <h3>3. Combat Logging (CL)</h3>
-                <p>Părăsirea forțată sau voluntară a serverului (Alt+F4 / Deconectare) în timpul unei faze de roleplay aflate în desfășurare pentru a evita consecințele.</p>
-                <span class="sanctiune">Sancțiune: Ban 14 Zile + Caracter Wipe</span>
+        <div class="hub-node ip-clicker" onclick="copyToClipboard('cfx.re/join/thunder')">
+            <div class="hub-meta">
+                <h5 style="color: var(--neon-blue);">cfx.re/join/thunder</h5>
+                <p>Apasă pentru stocare IP</p>
             </div>
         </div>
     </div>
 
-    <hr class="divider">
+    <div class="section-block" id="rules">
+        <h2>Regulament <span>Directivă</span></h2>
+        <p class="section-desc">Protocoale operaționale obligatorii în perimetrul orașului</p>
+        
+        <div class="tabs-menu">
+            <button class="tab-trigger active" onclick="switchTab(event, 'global-rules')">Reguli Globale</button>
+            <button class="tab-trigger" onclick="switchTab(event, 'faction-rules')">Sistem Facțiuni</button>
+        </div>
 
-    <div class="sectiune" id="factions">
-        <h2>Facțiuni <span>Disponibile</span></h2>
-        <p class="sectiune-sub">Alege-ți calea și construiește-ți propria poveste în oraș</p>
-        <div class="grid-container">
-            <div class="faction-card">
-                <div class="faction-icon">🚔</div>
-                <h3 style="color: #48dbfb;">Departamentul de Poliție (LSPD)</h3>
-                <p style="margin-top: 10px;">Menține ordinea publică, răspunde la jafuri de bănci și curăță străzile de criminalitate. Aplicațiile sunt deschise pe Discord.</p>
+        <div id="global-rules" class="tab-content active">
+            <div class="glass-card">
+                <h4>1. Fail Roleplay (FailRP)</h4>
+                <p>Executarea unor acțiuni improprie limitelor logice ale vieții reale sau lipsa fricii de auto-conservare în scenarii de criză directă.</p>
+                <span class="tag-punishment">Directivă: Warn / Ban Temporar</span>
             </div>
-            <div class="faction-card">
-                <div class="faction-icon">🚑</div>
-                <h3 style="color: #ff6b6b;">Servicii Medicale (EMS)</h3>
-                <p style="margin-top: 10px;">Salvează vieți în fiecare secundă. Intervenții rapide, tratamente complexe și asistență oferită cetățenilor aflați în pericol.</p>
+            <div class="glass-card">
+                <h4>2. Metagaming (Meta)</h4>
+                <p>Utilizarea informațiilor extrase din planul extern OOC (Discord, Stream-uri, Comunicări media externe) în execuția interacțiunilor din joc.</p>
+                <span class="tag-punishment">Directivă: Ban 7 Zile</span>
             </div>
-            <div class="faction-card">
-                <div class="faction-icon">💼</div>
-                <h3 style="color: #1dd1a1;">Organizații Ilegale</h3>
-                <p style="margin-top: 10px;">Controlează piețele negre, organizează jafuri de amploare și domină teritoriile alături de cartul sau mafia ta.</p>
+            <div class="glass-card">
+                <h4>3. Combat Logging (CL)</h4>
+                <p>Forțarea deconectării de la rețea în scopul clar de evadare sau anulare a consecințelor unui scenariu RP aflat în plină desfășurare.</p>
+                <span class="tag-punishment">Directivă: Ban 14 Zile + Wipe</span>
+            </div>
+        </div>
+
+        <div id="faction-rules" class="tab-content">
+            <div class="glass-card">
+                <h4>Departamentul de Poliție (LSPD)</h4>
+                <p>Forță militarizată guvernamentală responsabilă de securitatea macro-sistemului stradal și suprimarea facțiunilor de criminalitate organizată.</p>
+            </div>
+            <div class="glass-card">
+                <h4>Sistemul Medical Intern (EMS)</h4>
+                <p>Personal specializat cu timp de răspuns prioritar, optimizat pentru restabilirea indicilor vitali ai cetățenilor în stare critică.</p>
+            </div>
+            <div class="glass-card">
+                <h4>Sindicatul Ilegal</h4>
+                <p>Carteluri economice paralele dedicate controlului piețelor ascunse, jafurilor strategice și controlului teritorial.</p>
             </div>
         </div>
     </div>
 
-    <hr class="divider">
-
-    <div class="sectiune" id="staff">
+    <div class="section-block" id="staff-sector">
         <h2>Echipa <span>Administrativă</span></h2>
-        <p class="sectiune-sub">Oamenii dedicați din spatele proiectului Thunder Roleplay</p>
-        <div class="grid-container">
+        <p class="section-desc">Supervizorii și arhitecții rețelei Thunder Roleplay</p>
+        <div class="base-grid">
             
-            <div class="staff-card v-fondator">
-                <div class="avatar-frame">V</div>
+            <div class="staff-node fnd">
+                <div class="hex-avatar">V</div>
                 <h3>Valii</h3>
-                <span class="badge-grad" style="color: var(--fondator-color); border: 1px solid var(--fondator-color);">Fondator</span>
+                <span class="rank-badge" style="color: var(--fondator); border: 1px solid var(--fondator);">Fondator Proiect</span>
             </div>
             
-            <div class="staff-card v-cofondator">
-                <div class="avatar-frame">C</div>
+            <div class="staff-node cofnd">
+                <div class="hex-avatar">C</div>
                 <h3>Criss</h3>
-                <span class="badge-grad" style="color: var(--cofondator-color); border: 1px solid var(--cofondator-color);">Co-Fondator</span>
+                <span class="rank-badge" style="color: var(--cofondator); border: 1px solid var(--cofondator);">Co-Fondator</span>
+            </div>
+
+            <div class="staff-node cofnd">
+                <div class="hex-avatar">I</div>
+                <h3>Ianis</h3>
+                <span class="rank-badge" style="color: var(--cofondator); border: 1px solid var(--cofondator);">Co-Fondator</span>
             </div>
             
-            <div class="staff-card v-dev">
-                <div class="avatar-frame">P</div>
+            <div class="staff-node dev">
+                <div class="hex-avatar">P</div>
                 <h3>Ponti</h3>
-                <span class="badge-grad" style="color: var(--dev-color); border: 1px solid var(--dev-color);">Developer</span>
+                <span class="rank-badge" style="color: var(--developer); border: 1px solid var(--developer);">Lead Developer</span>
             </div>
             
         </div>
     </div>
 
-    <hr class="divider">
-
-    <div class="sectiune" id="shop">
-        <h2>Pachete <span>Donatori & VIP</span></h2>
-        <p class="sectiune-sub">Susține proiectul nostru și primești avantaje unice in-game</p>
-        <div class="grid-container">
+    <div class="section-block" id="store">
+        <h2>Pachete <span>VIP Extinse</span></h2>
+        <p class="section-desc">Securizează privilegii premium în baza de date locală</p>
+        <div class="base-grid">
             
-            <div class="shop-card">
+            <div class="package-node">
                 <div>
                     <h3>VIP Bronze</h3>
-                    <div class="price-tag">10<span>€</span></div>
-                    <ul class="perks-list">
-                        <li>Rol & Tag specific Bronze pe Discord & Joc</li>
-                        <li>Bonus cash în joc: 50.000$</li>
-                        <li>Acces la un garaj dedicat cu 1 vehicul VIP</li>
-                        <li>Prioritate standard în lista de așteptare</li>
+                    <div class="node-price">10<span>€</span></div>
+                    <ul class="perks-bucket">
+                        <li>Identificator Bronze cont Joc & Discord</li>
+                        <li>Injectare capital: +50.000$</li>
+                        <li>Slot alocat pentru 1 vehicul exclusiv VIP</li>
+                        <li>Management prioritate nivel de bază</li>
                     </ul>
                 </div>
-                <a href="https://discord.gg/pttd7sdZm" target="_blank" class="btn-shop">Achiziționează</a>
+                <a href="https://discord.gg/pttd7sdZm" target="_blank" class="btn-node-buy">Sincronizează</a>
             </div>
 
-            <div class="shop-card">
+            <div class="package-node">
                 <div>
                     <h3>VIP Silver</h3>
-                    <div class="price-tag">20<span>€</span></div>
-                    <ul class="perks-list">
-                        <li>Rol & Tag strălucitor Silver</li>
-                        <li>Bonus cash în joc: 150.000$</li>
-                        <li>Acces la 3 vehicule din catalogul VIP</li>
-                        <li>Slot rezervat direct (Sari peste coadă)</li>
-                        <li>Salariul de bază la joburi mărit cu +25%</li>
+                    <div class="node-price">20<span>€</span></div>
+                    <ul class="perks-bucket">
+                        <li>Identificator Silver cu reflexie vizuală</li>
+                        <li>Injectare capital: +150.000$</li>
+                        <li>Grupaj de 3 sloturi vehicule custom VIP</li>
+                        <li>Bypass coadă de conectare (Rezervat)</li>
+                        <li>Multiplicator salarii active: +25%</li>
                     </ul>
                 </div>
-                <a href="https://discord.gg/pttd7sdZm" target="_blank" class="btn-shop">Achiziționează</a>
+                <a href="https://discord.gg/pttd7sdZm" target="_blank" class="btn-node-buy">Sincronizează</a>
             </div>
 
-            <div class="shop-card exclusive">
-                <div class="exclusive-tag">Recomandat</div>
+            <div class="package-node gold-tier">
+                <div class="tier-tag">Apex Core</div>
                 <div>
-                    <h3 style="color: var(--cyan-neon);">VIP Gold</h3>
-                    <div class="price-tag" style="color: var(--cyan-neon);">35<span>€</span></div>
-                    <ul class="perks-list">
-                        <li>Tag animat Neon Gold pe server</li>
-                        <li>Bonus masiv cash: 400.000$</li>
-                        <li>Acces nelimitat la TOATE vehiculele VIP</li>
-                        <li>Prioritate absolută la conectare (Instant Connect)</li>
-                        <li>Salariu mărit cu +50% + Casă Custom unică gratuită</li>
+                    <h3 style="color: var(--neon-cyan);">VIP Gold</h3>
+                    <div class="node-price" style="color: var(--neon-cyan);">35<span>€</span></div>
+                    <ul class="perks-bucket">
+                        <li>Protocol Neon Animat Gold permanent</li>
+                        <li>Injectare capital masivă: +400.000$</li>
+                        <li>Acces total fără restricții catalog auto VIP</li>
+                        <li>Conectare instantanee (Prioritate Absolută)</li>
+                        <li>Multiplicator +50% + Proprietate imobiliară Custom</li>
                     </ul>
                 </div>
-                <a href="https://discord.gg/pttd7sdZm" target="_blank" class="btn-shop" style="background: var(--cyan-neon); color: #030708;">Achiziționează</a>
+                <a href="https://discord.gg/pttd7sdZm" target="_blank" class="btn-node-buy" style="background: var(--neon-cyan); color: #020506;">Sincronizează</a>
             </div>
 
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2>Feedback <span>Comunitate</span></h2>
+        <p class="section-desc">Ce spun alte entități logate în serverul nostru</p>
+        <div class="base-grid">
+            <div class="review-box">
+                <p>"Cel mai bun script de optimizare pe care l-am văzut. Am 140 FPS constant în mijlocul acțiunilor de poliție. Recomand cu încredere!"</p>
+                <span>- Robert N.</span>
+            </div>
+            <div class="review-box" style="border-color: var(--neon-cyan);">
+                <p>"Staff-ul se mișcă impecabil la tichete. Valii și echipa lui au creat ceva unic în România."</p>
+                <span>- Andrei M.</span>
+            </div>
         </div>
     </div>
 
     <footer>
-        <div class="footer-logo">THUNDER ROLEPLAY</div>
-        <p>&copy; 2026 Thunder Roleplay. Toate drepturile rezervate.</p>
-        <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.5;">Acest proiect nu este afiliat, asociat și nici aprobat de Rockstar Games sau Take-Two Interactive.</p>
+        <div class="footer-branding">THUNDER ROLEPLAY</div>
+        <p>&copy; 2026 Thunder Roleplay. Terminal securizat. Toate drepturile rezervate.</p>
+        <p style="margin-top: 15px; font-size: 0.85rem; opacity: 0.4;">Acest mediu virtual nu are asocieri de brand sau parteneriate cu Rockstar Games, Take-Two Interactive sau Cfx.re.</p>
     </footer>
+
+    <script>
+        function switchTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-trigger");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                var toast = document.getElementById("toast");
+                toast.classList.add("show");
+                setTimeout(function(){ toast.classList.remove("show"); }, 3000);
+            }, function(err) {
+                console.error('Eroare la copiere: ', err);
+            });
+        }
+    </script>
 
 </body>
 </html>
