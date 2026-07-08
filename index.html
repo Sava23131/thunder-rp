@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thunder Roleplay - Comunitate FiveM Premium</title>
+    <style>
+        /* FONTS & ROOT VARIABLES */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap');
+
+        :root {
+            --bg-main: #030708;
+            --bg-card: rgba(11, 20, 22, 0.6);
+            --cyan-neon: #00ffd5;
+            --cyan-glow: rgba(0, 255, 213, 0.3);
+            --fondator-color: #ff4757;
+            --cofondator-color: #ff9f43;
+            --dev-color: #00ffd5;
+            --text-gray: #a3c2c9;
+        }
+
+        /* RESET & GENERAL STYLES */
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-main);
+            color: #ffffff;
+            text-align: center;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 213, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 71, 87, 0.03) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        /* HEADER & NAVIGATION */
+        .navbar {
+            background-color: rgba(3, 7, 8, 0.85);
+            border-bottom: 1px solid rgba(0, 255, 213, 0.15);
+            padding: 20px 8%;
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+        .navbar .logo {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyan-neon);
+            font-weight: 900;
+            font-size: 1.8rem;
+            text-shadow: 0 0 15px var(--cyan-glow);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        .navbar .links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .navbar .links a:hover {
+            color: var(--cyan-neon);
+            text-shadow: 0 0 10px var(--cyan-neon);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 160px 20px 120px 20px;
+            position: relative;
+        }
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffffff; 
+            font-size: 6rem;
+            text-transform: uppercase;
+            letter-spacing: 12px;
+            margin-bottom: 20px;
+            font-weight: 900;
+            position: relative;
+            display: inline-block;
+        }
+        .hero h1 span {
+            color: var(--cyan-neon);
+            text-shadow: 0 0 20px var(--cyan-neon), 0 0 40px rgba(0, 255, 213, 0.6);
+        }
+        .subtitlu {
+            color: var(--text-gray);
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
+        
+        /* MODERN INTERACTIVE BUTTONS */
+        .btn-premium {
+            display: inline-block;
+            background: linear-gradient(90deg, #00ffd5, #00b3ff);
+            color: #030708;
+            padding: 16px 45px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 25px rgba(0, 255, 213, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-premium:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px var(--cyan-neon);
+            color: #fff;
+        }
+
+        /* SERVER STATUS PANEL */
+        .status-panel {
+            max-width: 900px;
+            margin: -40px auto 60px auto;
+            background: rgba(11, 20, 22, 0.8);
+            border: 1px solid rgba(0, 255, 213, 0.2);
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+        }
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .pulse-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--cyan-neon);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--cyan-neon);
+            animation: pulse 1.5s infinite;
+        }
+        .status-text h4 {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+        .status-text p {
+            color: var(--text-gray);
+            font-size: 1rem;
+            text-align: left;
+        }
+
+        /* SECTIONS GENERAL */
+        .sectiune {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+        .sectiune h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffffff;
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+        .sectiune h2 span {
+            color: var(--cyan-neon);
+        }
+        .sectiune-sub {
+            color: var(--text-gray);
+            margin-bottom: 60px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* GRID SYSTEM */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        /* CARDS WITH GLASSMORPHISM */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: transparent;
+            transition: all 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(0, 255, 213, 0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+        .card:hover::before {
+            background: var(--cyan-neon);
+        }
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+        .card p {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        .sanctiune {
+            margin-top: 25px;
+            display: inline-block;
+            background: rgba(255, 71, 87, 0.1);
+            color: #ff4757;
+            padding: 6px 15px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 71, 87, 0.2);
+        }
+
+        /* FACTIONS SECTION */
+        .faction-card {
+            background: linear-gradient(135deg, rgba(11,20,22,0.9) 0%, rgba(5,10,12,0.9) 100%);
+            border: 1px solid rgba(255,255,255,0.03);
+            padding: 35px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .faction-card:hover {
+            border-color: var(--cyan-neon);
+            box-shadow: 0 0 20px rgba(0, 255, 213, 0.1);
+        }
+        .faction-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        /* STAFF CARDS (ADVANCED NEON SETUP) */
+        .staff-card {
+            background: rgba(11, 20, 22, 0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 40px 30px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(5px);
+        }
+        .staff-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+        
+        /* Card specifics for hierarchy */
+        .staff-card.v-fondator:hover { border-color: var(--fondator-color); box-shadow: 0 0 30px rgba(255, 71, 87, 0.25); }
+        .staff-card.v-cofondator:hover { border-color: var(--cofondator-color); box-shadow: 0 0 30px rgba(255, 159, 67, 0.25); }
+        .staff-card.v-dev:hover { border-color: var(--dev-color); box-shadow: 0 0 30px rgba(0, 255, 213, 0.25); }
+
+        .avatar-frame {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin: 0 auto 25px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            color: #ffffff;
+            position: relative;
+        }
+        
+        .v-fondator .avatar-frame {
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.2) 0%, #060b0c 100%);
+            border: 3px solid var(--fondator-color);
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.4);
+        }
+        .v-cofondator .avatar-frame {
+            background: radial-gradient(circle, rgba(255, 159, 67, 0.2) 0%, #060b0c 100%);
+            border: 3px solid var(--cofondator-color);
+            box-shadow: 0 0 20px rgba(255, 159, 67, 0.4);
+        }
+        .v-dev .avatar-frame {
+            background: radial-gradient(circle, rgba(0, 255, 213, 0.2) 0%, #060b0c 100%);
+            border: 3px solid var(--dev-color);
+            box-shadow: 0 0 20px rgba(0, 255, 213, 0.4);
+        }
+
+        .staff-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .badge-grad {
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            background: rgba(0,0,0,0.4);
+        }
+
+        /* PREMIUM STORE SECTION */
+        .shop-card {
+            background: linear-gradient(180deg, rgba(15, 28, 31, 0.7) 0%, rgba(7, 12, 14, 0.9) 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 50px 30px 40px 30px;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+        .shop-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255,255,255,0.15);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+        .shop-card.exclusive {
+            border: 2px solid var(--cyan-neon);
+            box-shadow: 0 0 30px rgba(0, 255, 213, 0.15);
+        }
+        .exclusive-tag {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--cyan-neon);
+            color: #030708;
+            padding: 5px 25px;
+            font-size: 0.85rem;
+            font-weight: 900;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px var(--cyan-neon);
+        }
+        .shop-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+        }
+        .price-tag {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            color: #fff;
+            font-weight: 900;
+            margin: 25px 0;
+        }
+        .price-tag span {
+            color: var(--cyan-neon);
+            font-size: 2rem;
+            vertical-align: super;
+        }
+        .perks-list {
+            list-style: none;
+            text-align: left;
+            margin: 30px 0;
+        }
+        .perks-list li {
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .perks-list li::before {
+            content: "✓";
+            color: var(--cyan-neon);
+            font-weight: bold;
+        }
+        .btn-shop {
+            display: block;
+            background: transparent;
+            border: 2px solid var(--cyan-neon);
+            color: var(--cyan-neon);
+            padding: 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+        .btn-shop:hover {
+            background: var(--cyan-neon);
+            color: #030708;
+            box-shadow: 0 0 20px var(--cyan-neon);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #010405;
+            padding: 50px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #55727a;
+            font-size: 1rem;
+        }
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            color: rgba(255,255,255,0.4);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        
+        .divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(0,255,213,0.15), transparent);
+            margin: 40px 0;
+        }
+
+        /* ANIMATIONS */
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 213, 0.5); }
+            70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(0, 255, 213, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 213, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#" class="logo">THUNDER<span>RP</span></a>
+        <div class="links">
+            <a href="#">Acasă</a>
+            <a href="#regulament">Regulament</a>
+            <a href="#factions">Facțiuni</a>
+            <a href="#staff">Staff</a>
+            <a href="#shop">Magazin VIP</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>THUNDER <span>ROLEPLAY</span></h1>
+        <p class="subtitlu">Redefinim conceptul de Hard-Roleplay din România. Descoperă sisteme de scripturi revoluționare, o economie dinamică axată pe realism și o stabilitate de neegalat a serverului.</p>
+        <a href="https://discord.gg/pttd7sdZm" target="_blank" class="btn-premium">Alătură-te pe Discord</a>
+    </div>
+
+    <div class="status-panel">
+        <div class="status-item">
+            <div class="pulse-dot"></div>
+            <div class="status-text">
+                <h4>Server Online</h4>
+                <p>Pregătit pentru conexiune</p>
+            </div>
+        </div>
+        <div class="status-item">
+            <div class="status-text" style="text-align: center;">
+                <h4 style="color: var(--cyan-neon);">94 / 128</h4>
+                <p>Jucători Activi Acum</p>
+            </div>
+        </div>
+        <div class="status-item">
+            <div class="status-text">
+                <h4>cfx.re/join/thunder</h4>
+                <p>Adresă de conectare rapidă</p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="sectiune" id="regulament">
+        <h2>Regulament <span>Server</span></h2>
+        <p class="sectiune-sub">Nerespectarea normelor de conduită duce la sancțiuni drastice</p>
+        <div class="grid-container">
+            <div class="card">
+                <h3>1. Fail Roleplay (FailRP)</h3>
+                <p>Acțiunile care contrazic logica realității sau lipsa totală de instinct de conservare (ex: urcatul cu mașini de oraș pe teren accidentat sau ignorarea armelor ațintite asupra ta).</p>
+                <span class="sanctiune">Sancțiune: Warn / Ban 1-3 Zile</span>
+            </div>
+            <div class="card">
+                <h3>2. Metagaming (Meta)</h3>
+                <p>Transferul și utilizarea informațiilor obținute în afara caracterului (OOC - Discord, Live-uri, Chat Global) direct în interiorul acțiunilor IC din joc.</p>
+                <span class="sanctiune">Sancțiune: Ban Temporar 7 Zile</span>
+            </div>
+            <div class="card">
+                <h3>3. Combat Logging (CL)</h3>
+                <p>Părăsirea forțată sau voluntară a serverului (Alt+F4 / Deconectare) în timpul unei faze de roleplay aflate în desfășurare pentru a evita consecințele.</p>
+                <span class="sanctiune">Sancțiune: Ban 14 Zile + Caracter Wipe</span>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="sectiune" id="factions">
+        <h2>Facțiuni <span>Disponibile</span></h2>
+        <p class="sectiune-sub">Alege-ți calea și construiește-ți propria poveste în oraș</p>
+        <div class="grid-container">
+            <div class="faction-card">
+                <div class="faction-icon">🚔</div>
+                <h3 style="color: #48dbfb;">Departamentul de Poliție (LSPD)</h3>
+                <p style="margin-top: 10px;">Menține ordinea publică, răspunde la jafuri de bănci și curăță străzile de criminalitate. Aplicațiile sunt deschise pe Discord.</p>
+            </div>
+            <div class="faction-card">
+                <div class="faction-icon">🚑</div>
+                <h3 style="color: #ff6b6b;">Servicii Medicale (EMS)</h3>
+                <p style="margin-top: 10px;">Salvează vieți în fiecare secundă. Intervenții rapide, tratamente complexe și asistență oferită cetățenilor aflați în pericol.</p>
+            </div>
+            <div class="faction-card">
+                <div class="faction-icon">💼</div>
+                <h3 style="color: #1dd1a1;">Organizații Ilegale</h3>
+                <p style="margin-top: 10px;">Controlează piețele negre, organizează jafuri de amploare și domină teritoriile alături de cartul sau mafia ta.</p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="sectiune" id="staff">
+        <h2>Echipa <span>Administrativă</span></h2>
+        <p class="sectiune-sub">Oamenii dedicați din spatele proiectului Thunder Roleplay</p>
+        <div class="grid-container">
+            
+            <div class="staff-card v-fondator">
+                <div class="avatar-frame">V</div>
+                <h3>Valii</h3>
+                <span class="badge-grad" style="color: var(--fondator-color); border: 1px solid var(--fondator-color);">Fondator</span>
+            </div>
+            
+            <div class="staff-card v-cofondator">
+                <div class="avatar-frame">C</div>
+                <h3>Criss</h3>
+                <span class="badge-grad" style="color: var(--cofondator-color); border: 1px solid var(--cofondator-color);">Co-Fondator</span>
+            </div>
+            
+            <div class="staff-card v-dev">
+                <div class="avatar-frame">P</div>
+                <h3>Ponti</h3>
+                <span class="badge-grad" style="color: var(--dev-color); border: 1px solid var(--dev-color);">Developer</span>
+            </div>
+            
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="sectiune" id="shop">
+        <h2>Pachete <span>Donatori & VIP</span></h2>
+        <p class="sectiune-sub">Susține proiectul nostru și primești avantaje unice in-game</p>
+        <div class="grid-container">
+            
+            <div class="shop-card">
+                <div>
+                    <h3>VIP Bronze</h3>
+                    <div class="price-tag">10<span>€</span></div>
+                    <ul class="perks-list">
+                        <li>Rol & Tag specific Bronze pe Discord & Joc</li>
+                        <li>Bonus cash în joc: 50.000$</li>
+                        <li>Acces la un garaj dedicat cu 1 vehicul VIP</li>
+                        <li>Prioritate standard în lista de așteptare</li>
+                    </ul>
+                </div>
+                <a href="https://discord.gg/pttd7sdZm" target="_blank" class="btn-shop">Achiziționează</a>
+            </div>
+
+            <div class="shop-card">
+                <div>
+                    <h3>VIP Silver</h3>
+                    <div class="price-tag">20<span>€</span></div>
+                    <ul class="perks-list">
+                        <li>Rol & Tag strălucitor Silver</li>
+                        <li>Bonus cash în joc: 150.000$</li>
+                        <li>Acces la 3 vehicule din catalogul VIP</li>
+                        <li>Slot rezervat direct (Sari peste coadă)</li>
+                        <li>Salariul de bază la joburi mărit cu +25%</li>
+                    </ul>
+                </div>
+                <a href="https://discord.gg/pttd7sdZm" target="_blank" class="btn-shop">Achiziționează</a>
+            </div>
+
+            <div class="shop-card exclusive">
+                <div class="exclusive-tag">Recomandat</div>
+                <div>
+                    <h3 style="color: var(--cyan-neon);">VIP Gold</h3>
+                    <div class="price-tag" style="color: var(--cyan-neon);">35<span>€</span></div>
+                    <ul class="perks-list">
+                        <li>Tag animat Neon Gold pe server</li>
+                        <li>Bonus masiv cash: 400.000$</li>
+                        <li>Acces nelimitat la TOATE vehiculele VIP</li>
+                        <li>Prioritate absolută la conectare (Instant Connect)</li>
+                        <li>Salariu mărit cu +50% + Casă Custom unică gratuită</li>
+                    </ul>
+                </div>
+                <a href="https://discord.gg/pttd7sdZm" target="_blank" class="btn-shop" style="background: var(--cyan-neon); color: #030708;">Achiziționează</a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">THUNDER ROLEPLAY</div>
+        <p>&copy; 2026 Thunder Roleplay. Toate drepturile rezervate.</p>
+        <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.5;">Acest proiect nu este afiliat, asociat și nici aprobat de Rockstar Games sau Take-Two Interactive.</p>
+    </footer>
+
+</body>
+</html>
